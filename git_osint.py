@@ -187,35 +187,43 @@ def guardar_repos_csv(resultados, filename="repositorios_osint.csv"):
 # ---------- MAIN ----------
 def main():
     app = GitHubOSINT()
-    print("\n¿🔎 Qué deseas hacer?")
-    print("1. Buscar usuarios de GitHub por palabra clave")
-    print("2. Buscar repositorios OSINT por palabra clave")
-    opcion = input("Selecciona (1 o 2): ").strip()
 
-    if opcion == "1":
-        palabras = input("Palabras clave para buscar usuarios (separadas por coma): ").strip()
-        max_res = int(input("¿Cuántos usuarios deseas obtener? (máx 1000): "))
-        max_res = min(max_res, 1000)
-        nombre_csv = input("Nombre para el archivo CSV de salida: ").strip()
-        if not nombre_csv.endswith('.csv'):
-            nombre_csv += '.csv'
-        resultados = buscar_usuarios_github(app.api_key, palabras, max_res)
-        guardar_usuarios_csv(resultados, nombre_csv)
-        print(f"\n✅ {len(resultados)} usuarios guardados en: {nombre_csv}")
+    while True:
+        print("\n¿🔎 Qué deseas hacer?")
+        print("1. Buscar usuarios de GitHub por palabra clave")
+        print("2. Buscar repositorios OSINT por palabra clave")
+        print("3. Salir")
+        opcion = input("Selecciona (1, 2 o 3): ").strip()
 
-    elif opcion == "2":
-        palabras = input("Palabras clave para buscar repositorios (separadas por coma): ").strip()
-        max_res = int(input("¿Cuántos repositorios deseas obtener? (máx 1000): "))
-        max_res = min(max_res, 1000)
-        nombre_csv = input("Nombre para el archivo CSV de salida: ").strip()
-        if not nombre_csv.endswith('.csv'):
-            nombre_csv += '.csv'
-        resultados = buscar_repositorios_github(app.api_key, palabras, max_res)
-        guardar_repos_csv(resultados, nombre_csv)
-        print(f"\n✅ {len(resultados)} repositorios guardados en: {nombre_csv}")
-    
-    else:
-        print("❌ Opción inválida.")
+        if opcion == "1":
+            palabras = input("Palabras clave para buscar usuarios (separadas por coma): ").strip()
+            max_res = int(input("¿Cuántos usuarios deseas obtener? (máx 1000): "))
+            max_res = min(max_res, 1000)
+            nombre_csv = input("Nombre para el archivo CSV de salida: ").strip()
+            if not nombre_csv.endswith('.csv'):
+                nombre_csv += '.csv'
+            resultados = buscar_usuarios_github(app.api_key, palabras, max_res)
+            guardar_usuarios_csv(resultados, nombre_csv)
+            print(f"\n✅ {len(resultados)} usuarios guardados en: {nombre_csv}")
+
+        elif opcion == "2":
+            palabras = input("Palabras clave para buscar repositorios (separadas por coma): ").strip()
+            max_res = int(input("¿Cuántos repositorios deseas obtener? (máx 1000): "))
+            max_res = min(max_res, 1000)
+            nombre_csv = input("Nombre para el archivo CSV de salida: ").strip()
+            if not nombre_csv.endswith('.csv'):
+                nombre_csv += '.csv'
+            resultados = buscar_repositorios_github(app.api_key, palabras, max_res)
+            guardar_repos_csv(resultados, nombre_csv)
+            print(f"\n✅ {len(resultados)} repositorios guardados en: {nombre_csv}")
+
+        elif opcion == "3":
+            print("👋 Saliendo del programa. ¡Hasta pronto!")
+            break
+
+        else:
+            print("❌ Opción inválida. Intenta nuevamente.")
+
 
 if __name__ == "__main__":
     main()
