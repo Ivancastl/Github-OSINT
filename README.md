@@ -39,5 +39,5 @@ pip install -r requirements.txt
 ### **Paso 4:**
 # Ejecuta el script principal
 ```bash
-python git_osint
+python git_osint.py
 ```
