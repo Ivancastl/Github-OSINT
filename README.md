@@ -12,7 +12,7 @@ Herramienta OSINT que permite buscar **usuarios** y **repositorios** en GitHub u
 
 ## 🛠️ Requisitos
 
-- Python 3.7+
+- Python 
 - Token personal de la API de GitHub (`github_pat_...`)
 
 ## 📦 Instalación
